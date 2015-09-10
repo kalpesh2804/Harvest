@@ -20,7 +20,7 @@ namespace Harvest.ExcludeFilters
             {
                 return false;
             }
-            else if (url.Host.Count(x => x == '.') > 1) // Removing wwww from host name to compare host
+            else if (url.Host.Count(x => x == '.') > 1 && url.Host.StartsWith("www.")) // Removing wwww from host name to compare host
             {
                 String host1 = url.Host.Substring(url.Host.IndexOf('.') + 1);
                 
