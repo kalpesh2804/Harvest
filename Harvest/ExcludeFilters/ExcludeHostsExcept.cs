@@ -17,7 +17,18 @@ namespace Harvest.ExcludeFilters
         {
             // Do not exclude hosts in _host
             if (_hosts.Contains(url.Host))
+            {
                 return false;
+            }
+            else if (url.Host.Count(x => x == '.') > 1) // Removing wwww from host name to compare host
+            {
+                String host1 = url.Host.Substring(url.Host.IndexOf('.') + 1);
+                
+                if (_hosts.Contains(host1))
+                {
+                    return false;
+                }
+            }
 
             // Exclude
             return true;
